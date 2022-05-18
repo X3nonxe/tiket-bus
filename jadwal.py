@@ -7,9 +7,6 @@ class Jadwal(Bis):
       self.tujuan = tujuan
       self.tgl_berangkat = tgl_berangkat 
 
-   def lihat_jadwal(self):
-      pass
-
    def tambah_jadwal(self):
       pass
 
@@ -20,3 +17,9 @@ class Jadwal(Bis):
 
    def hapus_jadwal():
       pass
+
+   def lihat_jadwal(self):
+      print(f"Jadwal Keberangkatan Bis {self.kode_bis}")
+      print(f"ID jadwal : {self.id_jadwal}")
+      print(f"Dengan Tujuan : {self.tujuan}")
+      print(f"Tanggal keberangkatan : {self.tgl_berangkat}")
