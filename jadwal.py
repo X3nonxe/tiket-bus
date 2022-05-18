@@ -38,5 +38,3 @@ class Jadwal(Bis):
 
    def hapus_jadwal(self):
       print("Jadwal berhasil dihapus")
-
-   

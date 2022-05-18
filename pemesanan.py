@@ -1,4 +1,5 @@
 from jadwal import Jadwal
+from bis import Bis
 
 class Pemesanan(Jadwal):
 
@@ -37,3 +38,9 @@ class Pemesanan(Jadwal):
 
       print("Tiket berhasil dicetak")
 
+   def batalkan(self):
+      pass
+
+   def cetak(self):
+      print(f"Harga tiket Bis {self.id_bis} dengan keberangkatan {self.id_jadwal} senilai {self.harga}")
+      print(f"Tiket di pesan pada tanggal {self.tglpesanan}")
