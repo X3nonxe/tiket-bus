@@ -7,5 +7,4 @@ db = mysql.connector.connect(
   database="databis"
 )
 
-print(db)
 cursor = db.cursor()

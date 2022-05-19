@@ -3,7 +3,7 @@ from db import *
 
 class Jadwal(Bis):
    # Atribut yang dibutuhkan:
-   def __init__(self, id_jadwal: int, kode_bis: str, tujuan: str, tgl_berangkat: str, id_bis: int, plat_bis: str):
+   def __init__(self, id_jadwal, tujuan, tgl_berangkat, id_bis, kode_bis, plat_bis):
       super().__init__(id_bis, kode_bis, plat_bis)
       self.id_jadwal = id_jadwal
       self.tujuan = tujuan
@@ -55,6 +55,6 @@ class Jadwal(Bis):
       inp_id_jadwal = input("Masukan ID jadwal: ")
 
       #run query
-      cursor.execute("DELETE FROM jadwal WHERE id_jadwal = %s", (inp_id_jadwal))
+      cursor.execute("DELETE FROM jadwal WHERE id_jadwal = %s", (inp_id_jadwal,))
       db.commit()
       print("Jadwal berhasil dihapus")
