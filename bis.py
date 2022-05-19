@@ -1,7 +1,7 @@
 from db import *
 
 class Bis:
-   def __init__(self, id_bis: str, kode_bis: str, plat_bis: str):
+   def __init__(self, id_bis: int, kode_bis: str, plat_bis: str):
       self.id_bis = id_bis
       self.kode_bis = kode_bis
       self.plat_bis = plat_bis

@@ -2,12 +2,10 @@ from bis import Bis
 from db import *
 
 class Jadwal(Bis):
-
    # Atribut yang dibutuhkan:
-   def __init__(self, id_jadwal: str, kode_bis: str, tujuan: str, tgl_berangkat: str):
-      super().__init__(id_jadwal, kode_bis)
+   def __init__(self, id_jadwal: int, kode_bis: str, tujuan: str, tgl_berangkat: str, id_bis: int, plat_bis: str):
+      super().__init__(id_bis, kode_bis, plat_bis)
       self.id_jadwal = id_jadwal
-      self.kode_bis = kode_bis
       self.tujuan = tujuan
       self.tgl_berangkat = tgl_berangkat
 
@@ -34,7 +32,7 @@ class Jadwal(Bis):
       inp_tgl_berangkat = input("Masukkan Tanggal Berangkat: ")
 
       # run query
-      cursor.execute("INSERT INTO jadwal(id_jadwal, kode_bis, tujuan, tgl_berangkat) VALUERS (%s, %s, %s, %s)", (inp_id_jadwal, inp_kode_bis, inp_tujuan, inp_tgl_berangkat))
+      cursor.execute("INSERT INTO jadwal (id_jadwal, kode_bis, tujuan, tgl_berangkat) VALUES (%s, %s, %s, %s)", (inp_id_jadwal, inp_kode_bis, inp_tujuan, inp_tgl_berangkat))
       db.commit()
       print("Jadwal berhasil ditambahkan")
 
@@ -48,7 +46,7 @@ class Jadwal(Bis):
       inp_tgl_berangkat = input("Masukan tanggal keberangkatan: ")
 
       # run Query
-      cursor.execute("UPDATE jadwal SET id_jadwal = %s, kode_bis = %s, tujuan = %s, tgl_berangkat = %s WHERE id_jadwal = %s", (inp_id_jadwal_baru, inp_kode_bis, inp_tujuan, inp_tgl_berangkat, inp_tujuan, inp_id_jadwal_lama))
+      cursor.execute("UPDATE jadwal SET id_jadwal = %s, kode_bis = %s, tujuan = %s, tgl_berangkat = %s WHERE id_jadwal = %s", (inp_id_jadwal_baru, inp_kode_bis, inp_tujuan, inp_tgl_berangkat, inp_id_jadwal_lama))
       db.commit()
       print("Jadwal berhasil diedit")
 

@@ -16,10 +16,14 @@ class Pemesanan(Jadwal):
       # mencetak/menampilkan data
       print("==CETAK PEMESANAN==")
       for row in data:
-         print("ID Bis: ", row[0])
-         print("ID Jadwal: ", row[1])
-         print("Harga Tiket: ", row[2])
-         print("Tanggal Pemesanan: ", row[3])
+         print("Kode Pesanan:", row[0])
+         print("Kode Bis: ", row[1])
+         print("ID Jadwal: ", row[2])
+         print("Harga Tiket: ", row[3])
+         print("Tanggal Pemesanan: ", row[4])
 
    def batalkan(self):
-      pass
+      kode_pesanan = input("Masukkan kode pesanan: ")
+      cursor.execute("DELETE FROM pemesanan WHERE kode_pesanan = %s", (kode_pesanan))
+      db.commit()
+
