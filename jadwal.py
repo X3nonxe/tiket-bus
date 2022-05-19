@@ -1,4 +1,5 @@
 from bis import Bis
+from db import *
 
 class Jadwal(Bis):
 
@@ -12,12 +13,18 @@ class Jadwal(Bis):
 
    # Method yang dibutuhkan:
    def lihat_jadwal(self):
+      # mengambil semua data dari tabel jadwal
+      cursor.execute("SELECT * FROM jadwal")
+      data = cursor.fetchall()
+
       # Tampilan jadwal
       print("=== JADWAL ===")
-      print(f"ID Jadwal: {self.id_jadwal}")
-      print(f"Kode Bis: {self.kode_bis}")
-      print(f"Tujuan: {self.tujuan}")
-      print(f"Tanggal Berangkat: {self.tgl_berangkat}")
+      for row in data:
+         print("ID Jadwal:", row[0])
+         print("Kode Bis:", row[1])
+         print("Tujuan:", row[2])
+         print("Tanggal Berangkat:", row[3])
+         print("")
 
    def tambah_jadwal(self):
       # Input user untuk menambah jadwal
@@ -26,15 +33,30 @@ class Jadwal(Bis):
       inp_tujuan = input("Masukkan Tujuan: ")
       inp_tgl_berangkat = input("Masukkan Tanggal Berangkat: ")
 
+      # run query
+      cursor.execute("INSERT INTO jadwal(id_jadwal, kode_bis, tujuan, tgl_berangkat) VALUERS (%s, %s, %s, %s)", (inp_id_jadwal, inp_kode_bis, inp_tujuan, inp_tgl_berangkat))
+      db.commit()
       print("Jadwal berhasil ditambahkan")
 
-   def edit_jadwal(self, idjadwal_baru: str, kodebis_baru: str, tujuan_baru: str, tglberangkat_baru: str):
-      self.idjadwal_baru = idjadwal_baru
-      self.kodebis_baru = kodebis_baru
-      self.tujuan_baru = tujuan_baru
-      self.tglberangkat_baru = tglberangkat_baru
+   def edit_jadwal(self):
+      # input ID Lama
+      inp_id_jadwal_lama = input("Masukan ID jadwal lama: ")
+      # input data Baru
+      inp_id_jadwal_baru = input("Masukan ID jadwal baru: ")
+      inp_kode_bis = input("Masukan kode bis baru: ")
+      inp_tujuan = input("Masukan Tujuan baru: ")
+      inp_tgl_berangkat = input("Masukan tanggal keberangkatan: ")
 
+      # run Query
+      cursor.execute("UPDATE jadwal SET id_jadwal = %s, kode_bis = %s, tujuan = %s, tgl_berangkat = %s WHERE id_jadwal = %s", (inp_id_jadwal_baru, inp_kode_bis, inp_tujuan, inp_tgl_berangkat, inp_tujuan, inp_id_jadwal_lama))
+      db.commit()
       print("Jadwal berhasil diedit")
 
    def hapus_jadwal(self):
+      #input ID jadwal 
+      inp_id_jadwal = input("Masukan ID jadwal: ")
+
+      #run query
+      cursor.execute("DELETE FROM jadwal WHERE id_jadwal = %s", (inp_id_jadwal))
+      db.commit()
       print("Jadwal berhasil dihapus")
