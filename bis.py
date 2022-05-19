@@ -5,10 +5,16 @@ class Bis:
       self.plat_bis = plat_bis
 
    def pemberangkatan(self):
-      pass
+      print("==PEMBERANGKATAN BIS==")
+      print(f"ID Bis: {self.id_bis}")
+      print(f"Kode Bis: {self.kode_bis}")
+      print(f"Plat Bis: {self.plat_bis}")
 
    def tambahdatabis(self):
-      pass
+      # Input untuk menambahkan jadwal
+      inp_id_bis = input("Masukan ID Bis: ")
+      inp_kode_bis = input("Masukan kode Bis: ")
+      inp_plat_bis = input("Masukan plat Bis: ")
 
    def editdatabis(self, idbis_baru: str, kodebis_baru: str, platbis_baru: str):
       self.idbis_baru = idbis_baru
@@ -16,4 +22,4 @@ class Bis:
       self.platbis_baru = platbis_baru
 
    def hapusdatabis(self):
-      pass
+      print("Jadwal berhasil dihapus")
