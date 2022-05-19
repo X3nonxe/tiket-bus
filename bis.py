@@ -1,3 +1,5 @@
+from db import *
+
 class Bis:
    def __init__(self, id_bis: str, kode_bis: str, plat_bis: str):
       self.id_bis = id_bis
@@ -5,21 +7,48 @@ class Bis:
       self.plat_bis = plat_bis
 
    def pemberangkatan(self):
-      print("==PEMBERANGKATAN BIS==")
-      print(f"ID Bis: {self.id_bis}")
-      print(f"Kode Bis: {self.kode_bis}")
-      print(f"Plat Bis: {self.plat_bis}")
+      # Mengambil semua data dari tabel bis
+      cursor.execute("SELECT * FROM bis")
+      data = cursor.fetchall()
 
+      # Menampilkan data
+      print("==PEMBERANGKATAN BIS==")
+      for row in data:
+         print("ID Bis:", row[0])
+         print("Kode Bis:", row[1])
+         print("Plat Bis:", row[2])
+         print("")
+      
    def tambahdatabis(self):
-      # Input untuk menambahkan jadwal
+      # Input untuk menambahkan bis
       inp_id_bis = input("Masukan ID Bis: ")
       inp_kode_bis = input("Masukan kode Bis: ")
       inp_plat_bis = input("Masukan plat Bis: ")
 
-   def editdatabis(self, idbis_baru: str, kodebis_baru: str, platbis_baru: str):
-      self.idbis_baru = idbis_baru
-      self.kodebis_baru = kodebis_baru
-      self.platbis_baru = platbis_baru
+      # Menjalankan Query
+      cursor.execute("INSERT INTO bis(id_bis, kode_bis, plat_bis) VALUES (%s, %s, %s)", (inp_id_bis, inp_kode_bis, inp_plat_bis))
+      db.commit()
+      print("Bis berhasil ditambahkan")
+
+   def editdatabis(self):
+      # Input Id Lama
+      inp_id_bis_lama = input("Masukan ID Bis Lama: ")
+
+      # Input Data Baru
+      inp_id_bis_baru = input("Masukan ID Bis Baru: ")
+      inp_kode_bis = input("Masukan kode Bis Baru: ")
+      inp_plat_bis = input("Masukan plat Bis Baru: ")
+
+      # Menjalankan Query
+      cursor.execute("UPDATE bis SET id_bis = %s, kode_bis = %s, plat_bis = %s WHERE id_bis = %s", (inp_id_bis_baru, inp_kode_bis, inp_plat_bis, inp_id_bis_lama))
+      db.commit()
+      print("Bis berhasil diedit")
 
    def hapusdatabis(self):
-      print("Jadwal berhasil dihapus")
+      # Input Id Bis
+      inp_id_bis = input("Masukan ID Bis: ")
+
+      # Menjalankan Query
+      cursor.execute("DELETE FROM bis WHERE id_bis = %s", (inp_id_bis,))
+      db.commit()
+      print("Bis berhasil dihapus")
